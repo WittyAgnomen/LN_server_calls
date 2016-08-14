@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://getcompanydetail.index.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" xmlns:indexcommon="http://indexcommon.index.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://getcompanydetail.index.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="IndexCommon.xsd" namespace="http://indexcommon.index.services.v1.wsapi.lexisnexis.com" />
+  <element name="GetCompanyDetail" type="tns:GetCompanyDetail">
+    <annotation>
+      <documentation>
+			    This request return CompanyDetail of the provided company id. 
+			</documentation>
+    </annotation>
+  </element>
+  <element name="GetCompanyDetailResponse" type="tns:GetCompanyDetailResponse">
+    <annotation>
+      <documentation>Returns Company Detail including CompanyIndexTermDetail and HotTermData.
+			</documentation>
+    </annotation>
+  </element>
+  <complexType name="GetCompanyDetail">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">f4348ad8876542bc93748c89fb98a7e</example>
+                  Security token that must be provided on all non-authentication
+                  requests.
+               </documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" default="en-US" name="locale" type="common:Locale">
+        <annotation>
+          <documentation>
+					The adaptation to use.The format of the locale string must be like: en_US.
+				</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="1" maxOccurs="1" name="companyId" type="string">
+        <annotation>
+          <documentation>
+                  The company identifier.
+               </documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" default="en-US" name="fallbackLocale" type="common:Locale">
+        <annotation>
+          <documentation>
+					The adaptation to use If no hot terms are found under the locale, this locale is checked for additional terms.
+					The format of the string must be like: en_US.
+				</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" default="5" name="maxHotItems" type="integer">
+        <annotation>
+          <documentation>
+					Specify the max number of hot terms to return.
+				</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" default="false" name="includeHotItems" type="boolean">
+        <annotation>
+          <documentation>
+					Specify whether to return hot terms.
+				</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" default="true" name="includeOnlyCompanyHotItems" type="boolean">
+        <annotation>
+          <documentation>
+					If this is specified, only company hot terms are returned and the other hot term lists are null.
+				</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="GetCompanyDetailResponse">
+    <sequence>
+      <element name="companyIndexTermDetail" type="indexcommon:CompanyIndexTermDetail">
+        <annotation>
+          <documentation>
+                  Contains the detailed information for the requested company id.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="hotTermData" type="indexcommon:HotTermData">
+        <annotation>
+          <documentation>
+                  Container for the hot term data.
+               </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

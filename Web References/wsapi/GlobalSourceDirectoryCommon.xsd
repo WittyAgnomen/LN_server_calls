@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://common.globalsourcedirectory.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://common.globalsourcedirectory.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <complexType name="FilterList">
+    <sequence>
+      <element maxOccurs="7" name="unionFilter" type="tns:Filter">
+        <annotation>
+          <documentation>
+						Sets the parameters of this particular filter (a list of filterIds).  Within
+						each filter, the list of filterIds will be combined using a logical OR, or
+						union, so that results will match this filter if any filterId is matched.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="Filter">
+    <sequence>
+      <element name="filterIdList" type="tns:FilterIdList">
+        <annotation>
+          <documentation>
+						Encapsulates a list of filterIds, used in the
+						GlobalSourceDirectory operations.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="FilterIdList">
+    <sequence>
+      <element maxOccurs="unbounded" name="filterId" type="string">
+        <annotation>
+          <documentation>
+						A filterId is a token used to identify a particular GlobalSourceDirectory
+						filter.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

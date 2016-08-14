@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://retrievedossiertaxonomy.dossier.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://retrievedossiertaxonomy.dossier.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="../Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="RetrieveDossierTaxonomy" type="tns:RetrieveDossierTaxonomy">
+    <annotation>
+      <documentation>Retrieve a dossier taxonomy to present to the user to form
+                     search terms in a dossier search.</documentation>
+    </annotation>
+  </element>
+  <element name="RetrieveDossierTaxonomyResponse" type="tns:RetrieveDossierTaxonomyResponse">
+    <annotation>
+      <documentation>Returns taxonomy of search values.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RetrieveDossierTaxonomy">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>Security token that must be provided on all authenticated requests.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="1" maxOccurs="1" name="dossierTaxonomy" type="tns:DossierTaxonomyType">
+        <annotation>
+          <documentation>A dossier taxonomy to return.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveDossierTaxonomyResponse">
+    <sequence>
+      <element name="dossierTaxonomyNode" type="tns:DossierTaxonomyNode">
+        <annotation>
+          <documentation>The number of companies found that match the search criteria.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="DossierTaxonomyNode">
+    <sequence>
+      <element minOccurs="0" name="name" type="string">
+        <annotation>
+          <documentation>The name of the node.</documentation>
+        </annotation>
+      </element>
+      <element name="key" type="string">
+        <annotation>
+          <documentation>The search key for the node.</documentation>
+        </annotation>
+      </element>
+      <element name="childNodes" type="tns:DossierTaxonomyNodeList">
+        <annotation>
+          <documentation>A list of child nodes.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="DossierTaxonomyNodeList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="dossierTaxonomyNode" type="tns:DossierTaxonomyNode">
+        <annotation>
+          <documentation>A Dossier Taxonomoy node.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <simpleType name="DossierTaxonomyType">
+    <restriction base="string">
+      <enumeration value="ExecutiveFunction" />
+      <enumeration value="ExecutiveSpecialty" />
+    </restriction>
+  </simpleType>
+</schema>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://searchindustrydossier.dossier.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:result="http://result.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://searchindustrydossier.dossier.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="../Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="../Result.xsd" namespace="http://result.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="SearchIndustryDossier" type="tns:SearchIndustryDossier">
+    <annotation>
+      <documentation>Search for an industry.</documentation>
+    </annotation>
+  </element>
+  <element name="SearchIndustryDossierResponse" type="tns:SearchIndustryDossierResponse">
+    <annotation>
+      <documentation>Returns the industries searching Industry Dossier.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SearchIndustryDossier">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>Security token that must be provided on all authenticated requests.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="1" maxOccurs="1" name="query" type="string">
+        <annotation>
+          <documentation>A query to locate a company.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" maxOccurs="1" name="documentRange" type="result:Range">
+        <annotation>
+          <documentation>Defines the range of documents to be retrieved.
+					By default the first 50 companies will be returned.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SearchIndustryDossierResponse">
+    <sequence>
+      <element name="documentsFound" type="integer">
+        <annotation>
+          <documentation>The number of industries found that match the search criteria.</documentation>
+        </annotation>
+      </element>
+      <element name="industryList" type="tns:IndustryList">
+        <annotation>
+          <documentation>A list of industries that match the input query.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="IndustryList">
+    <sequence>
+      <element maxOccurs="unbounded" name="industry" type="tns:Industry">
+        <annotation>
+          <documentation>Industry information</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="Industry">
+    <sequence>
+      <element minOccurs="0" name="dossierId" type="string">
+        <annotation>
+          <documentation>Unique identifier that refers to a company in Company Dossier.</documentation>
+        </annotation>
+      </element>
+      <element name="description" type="string">
+        <annotation>
+          <documentation>A description of the industry.</documentation>
+        </annotation>
+      </element>
+      <element name="sic" type="string">
+        <annotation>
+          <documentation>The SIC code associated with this industry.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

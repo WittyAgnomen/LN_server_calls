@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ACC6804C-8B9A-4BFA-9F98-AA03E650500B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WSKCons</RootNamespace>
+    <AssemblyName>WSKSampleCons</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>http://localhost/WSKSampleCons/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CsvFileWriter.cs" />
+    <Compile Include="CsvRow.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="SearchArrays.cs" />
+    <Compile Include="StringExtensions.cs" />
+    <Compile Include="Web References\wsapi\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WSKAuthenticateEndUser.cs" />
+    <Compile Include="WSKAuthenticateLocation.cs" />
+    <Compile Include="WSKAuthentication.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="WSKGetDocumentsByRange.cs" />
+    <Compile Include="WSKSearch.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\wsapi\AuthenticateEndUser.xsd" />
+    <None Include="Web References\wsapi\AuthenticateEndUserResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\AuthenticateLocation.xsd" />
+    <None Include="Web References\wsapi\AuthenticateLocationResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\AuthenticateResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\Authentication.xsd" />
+    <None Include="Web References\wsapi\BrowseCitationFormats.xsd" />
+    <None Include="Web References\wsapi\BrowseCitationFormatsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\BrowseCorporateStructure.xsd" />
+    <None Include="Web References\wsapi\BrowseCorporateStructureResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\BrowseGlobalSources.xsd" />
+    <None Include="Web References\wsapi\BrowseGlobalSourcesAlphabetically.xsd" />
+    <None Include="Web References\wsapi\BrowseGlobalSourcesAlphabeticallyResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\BrowseGlobalSourcesResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\BrowseIndexTerms.xsd" />
+    <None Include="Web References\wsapi\BrowseIndexTermsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\BrowseIndustryHierarchy.xsd" />
+    <None Include="Web References\wsapi\BrowseIndustryHierarchyResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\BrowseResultClassifications.xsd" />
+    <None Include="Web References\wsapi\BrowseResultClassificationsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\BrowseSourceDirectory.xsd" />
+    <None Include="Web References\wsapi\BrowseSourceDirectoryResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\BrowseSources.xsd" />
+    <None Include="Web References\wsapi\BrowseSourcesResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\BrowseSupportedRegions.xsd" />
+    <None Include="Web References\wsapi\BrowseSupportedRegionsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\BulkSearch.xsd" />
+    <None Include="Web References\wsapi\BulkSearchResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\CitatorCommon.xsd" />
+    <None Include="Web References\wsapi\Common.xsd" />
+    <None Include="Web References\wsapi\CompareCompanies.xsd" />
+    <None Include="Web References\wsapi\CompareCompaniesResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\CreateDossierLinkId.xsd" />
+    <None Include="Web References\wsapi\CreateDossierLinkIdResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\DeleteSavedSearches.xsd" />
+    <None Include="Web References\wsapi\DeleteSavedSearchesResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\DossierCommon.xsd" />
+    <None Include="Web References\wsapi\ExecuteSavedSearch.xsd" />
+    <None Include="Web References\wsapi\FindCitations.xsd" />
+    <None Include="Web References\wsapi\FindCitationsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\FindGlobalSourceBySourceCode.xsd" />
+    <None Include="Web References\wsapi\FindGlobalSourceBySourceCodeResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\FindGlobalSourcesByKeyword.xsd" />
+    <None Include="Web References\wsapi\FindGlobalSourcesByKeywordResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetAdjacentDocument.xsd" />
+    <None Include="Web References\wsapi\GetAttachmentList.xsd" />
+    <None Include="Web References\wsapi\GetAttachmentListResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetAttachments.xsd" />
+    <None Include="Web References\wsapi\GetAttachmentsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetCitationDocument.xsd" />
+    <None Include="Web References\wsapi\GetCitationDocumentResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetCitationFormatDetails.xsd" />
+    <None Include="Web References\wsapi\GetCitationFormatDetailsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetCitationReport.xsd" />
+    <None Include="Web References\wsapi\GetCitationReportResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetCitationSignals.xsd" />
+    <None Include="Web References\wsapi\GetCitationSignalsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetCompanyDetail.xsd" />
+    <None Include="Web References\wsapi\GetCompanyDetailResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetCourtsAndPracticeAreas.xsd" />
+    <None Include="Web References\wsapi\GetCourtsAndPracticeAreasResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetDocumentByCitation.xsd" />
+    <None Include="Web References\wsapi\GetDocumentByCitationResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetDocumentByDocketNumber.xsd" />
+    <None Include="Web References\wsapi\GetDocumentByPartyName.xsd" />
+    <None Include="Web References\wsapi\GetDocumentInSourceContext.xsd" />
+    <None Include="Web References\wsapi\GetDocumentsByDocumentId.xsd" />
+    <None Include="Web References\wsapi\GetDocumentsByRange.xsd" />
+    <None Include="Web References\wsapi\GetDocumentsWithCustomView.xsd" />
+    <None Include="Web References\wsapi\GetDocumentVersions.xsd" />
+    <None Include="Web References\wsapi\GetDocumentVersionsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetGlobalSourceFilters.xsd" />
+    <None Include="Web References\wsapi\GetGlobalSourceFiltersResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetGlobalSourceTaxonomies.xsd" />
+    <None Include="Web References\wsapi\GetGlobalSourceTaxonomiesResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetGroupSourceMemberNames.xsd" />
+    <None Include="Web References\wsapi\GetGroupSourceMemberNamesResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetIndexTermTaxonomies.xsd" />
+    <None Include="Web References\wsapi\GetIndexTermTaxonomiesResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetRelatedTOCIds.xsd" />
+    <None Include="Web References\wsapi\GetRelatedTOCIdsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetRetrievableSegments.xsd" />
+    <None Include="Web References\wsapi\GetRetrievableSegmentsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetSavedSearchDetails.xsd" />
+    <None Include="Web References\wsapi\GetSavedSearchDetailsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetSearchableSegments.xsd" />
+    <None Include="Web References\wsapi\GetSearchableSegmentsV2.xsd" />
+    <None Include="Web References\wsapi\GetSearchableSegmentsV2Response2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetShepardSignals.xsd" />
+    <None Include="Web References\wsapi\GetShepardSignalsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetShepardsLexcite.xsd" />
+    <None Include="Web References\wsapi\GetSignalsAndHN.xsd" />
+    <None Include="Web References\wsapi\GetSignalsAndHNResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetSortKeys.xsd" />
+    <None Include="Web References\wsapi\GetSortKeysResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetSourceDetails-SourceDirectory.xsd" />
+    <None Include="Web References\wsapi\GetSourceDetails.xsd" />
+    <None Include="Web References\wsapi\GetSourceDetailsResponse12.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetSourceDetailsResponse3.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetSourcesByJurisdiction.xsd" />
+    <None Include="Web References\wsapi\GetSourcesByJurisdictionResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\GetTOCDocumentNavigationPath.xsd" />
+    <None Include="Web References\wsapi\GlobalSourceDirectoryCommon.xsd" />
+    <None Include="Web References\wsapi\IndexCommon.xsd" />
+    <None Include="Web References\wsapi\LDCCommon.xsd" />
+    <None Include="Web References\wsapi\LegalSearch.xsd" />
+    <None Include="Web References\wsapi\LegalSearchGetSortKeys.xsd" />
+    <None Include="Web References\wsapi\LegalSearchGetSortKeysResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\LegalSearchResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\LegalSearchSortResults.xsd" />
+    <None Include="Web References\wsapi\LegalSearchSortResultsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\ListSavedSearches.xsd" />
+    <None Include="Web References\wsapi\ListSavedSearchesResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\ModifySavedSearch.xsd" />
+    <None Include="Web References\wsapi\ModifySavedSearchResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\NarrowSearch.xsd" />
+    <None Include="Web References\wsapi\NavigateTOC.xsd" />
+    <None Include="Web References\wsapi\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\wsapi\ReportDocumentUse.xsd" />
+    <None Include="Web References\wsapi\ReportDocumentUseResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\ResolveDossierLinkId.xsd" />
+    <None Include="Web References\wsapi\ResolveDossierLinkIdResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\ResolveRemoteLink.xsd" />
+    <None Include="Web References\wsapi\Result.xsd" />
+    <None Include="Web References\wsapi\RetrievalResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\RetrieveCompanyCategoryList.xsd" />
+    <None Include="Web References\wsapi\RetrieveCompanyCategoryListResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\RetrieveComponentList.xsd" />
+    <None Include="Web References\wsapi\RetrieveComponentListResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\RetrieveComponents.xsd" />
+    <None Include="Web References\wsapi\RetrieveComponentsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\RetrieveCorporateHierarchy.xsd" />
+    <None Include="Web References\wsapi\RetrieveCorporateHierarchyResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\RetrieveDossierLinks.xsd" />
+    <None Include="Web References\wsapi\RetrieveDossierLinksResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\RetrieveDossierTaxonomy.xsd" />
+    <None Include="Web References\wsapi\RetrieveDossierTaxonomyResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\RetrieveFullTextAttributeList.xsd" />
+    <None Include="Web References\wsapi\RetrieveFullTextAttributeListResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\SavedSearchCommon.xsd" />
+    <None Include="Web References\wsapi\SaveSearch.xsd" />
+    <None Include="Web References\wsapi\SaveSearchResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\Search.xsd" />
+    <None Include="Web References\wsapi\SearchCitationFormats.xsd" />
+    <None Include="Web References\wsapi\SearchCitationFormatsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\SearchCommon.xsd" />
+    <None Include="Web References\wsapi\SearchCompanyDossier.xsd" />
+    <None Include="Web References\wsapi\SearchCompanyDossierResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\SearchCompanyIndex.xsd" />
+    <None Include="Web References\wsapi\SearchCompanyIndexResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\SearchExecutiveDossier.xsd" />
+    <None Include="Web References\wsapi\SearchExecutiveDossierResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\SearchIndexTerms.xsd" />
+    <None Include="Web References\wsapi\SearchIndustryDossier.xsd" />
+    <None Include="Web References\wsapi\SearchIndustryDossierResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\SearchIndustryDossierWithResultHierarchy.xsd" />
+    <None Include="Web References\wsapi\SearchIndustryDossierWithResultHierarchyResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\SearchResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\SearchResultsGroup2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\SearchSourceDirectory.xsd" />
+    <None Include="Web References\wsapi\SearchSourceDirectoryResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\SearchSources.xsd" />
+    <None Include="Web References\wsapi\SearchSourcesResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\Security.xsd" />
+    <None Include="Web References\wsapi\SortResults.xsd" />
+    <None Include="Web References\wsapi\SortResultsResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\SourceCommon.xsd" />
+    <None Include="Web References\wsapi\SourceContextResult.xsd" />
+    <None Include="Web References\wsapi\SourceContextRetrievalResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\SourceDirectoryCommon.xsd" />
+    <None Include="Web References\wsapi\TOCCommon.xsd" />
+    <None Include="Web References\wsapi\TOCResponse2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\wsapi\WSAPI.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="C:\WSK_Csharp_CodeSamples\WSDL\WSAPI-1_0.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\wsapi\</RelPath>
+      <UpdateFromURL>C:\WSK_Csharp_CodeSamples\WSDL\WSAPI-1_0.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>WSKSampleCons_wsapi_WSAPI</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

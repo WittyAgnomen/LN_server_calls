@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://getdocumentsbyrange.retrieve.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:result="http://result.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://getdocumentsbyrange.retrieve.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Result.xsd" namespace="http://result.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="SearchCommon.xsd" namespace="http://common.search.services.v1.wsapi.lexisnexis.com" />
+  <element name="GetDocumentsByRange" type="tns:GetDocumentsByRange">
+    <annotation>
+      <documentation>
+				Allows a client to retrieve documents by range.
+			</documentation>
+    </annotation>
+  </element>
+  <element name="GetDocumentsByRangeResponse" type="result:RetrievalResponse">
+    <annotation>
+      <documentation>
+				Returns the documents requested by the client.
+			</documentation>
+    </annotation>
+  </element>
+  <complexType name="GetDocumentsByRange">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+						Security token that must be provided on all authenticated requests.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" maxOccurs="1" name="crosslinkFlag" type="string">
+        <annotation>
+          <documentation>
+				Created a new element for XML Crosslink functionality. 
+				To enable the cross linking functionality, the value to be passed is "Y" or "y"
+			</documentation>
+        </annotation>
+      </element>
+      <element name="searchId" type="string">
+        <annotation>
+          <documentation>
+						Identifier that refers to all pertinent information related to the original search.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="classificationId" type="string">
+        <annotation>
+          <documentation>
+						Identifier to retrieve documents from a specific classification.
+						classificationId can be retrieved through the 
+						classification.browseresultclassification operation.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="retrievalOptions" type="result:RetrievalOptions">
+        <annotation>
+          <documentation>
+						This structure contains details about how retrieved
+						documents are to be presented.  Also includes the range of documents
+						to return.  If absent, no documents will be returned.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

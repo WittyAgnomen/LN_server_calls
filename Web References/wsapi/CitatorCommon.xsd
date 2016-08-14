@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://citator.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://citator.common.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <complexType name="Citation">
+    <sequence>
+      <element name="citationString" type="string">
+        <annotation>
+          <documentation>
+        The legal citation string used to specify a legal document.
+        </documentation>
+        </annotation>
+      </element>
+      <element name="countryCode" type="string">
+        <annotation>
+          <documentation>
+        The two-letter ISO 3166 country code for the reporter code of the legal citation.
+        See http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html
+        </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://browsecitationformats.ldc.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:ldccommon="http://ldccommon.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://browsecitationformats.ldc.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="LDCCommon.xsd" namespace="http://ldccommon.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="BrowseCitationFormats" type="tns:BrowseCitationFormats">
+    <annotation>
+      <documentation>
+       Represents a search for getting the information regarding the citation formats by passing either the start character or the partition key.    </documentation>
+    </annotation>
+  </element>
+  <element name="BrowseCitationFormatsResponse" type="tns:BrowseCitationFormatsResponse">
+    <annotation>
+      <documentation>
+        The response from a BrowseCitationFormats is a set of search results,   
+        containing information regarding the source details and the partition details.
+       </documentation>
+    </annotation>
+  </element>
+  <complexType name="BrowseCitationFormats">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">f4348ad8876542bc93748c89fb98a7e</example>
+            Security token that must be provided on all non-authentication
+            requests.
+          </documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="startCharacter" type="tns:startCharacter">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">D</example>
+				Start Character :  single alphbet character </documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="partitionKey" type="long">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">10087871</example>
+				Partition Key 
+			</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <simpleType name="startCharacter">
+    <restriction base="string">
+      <pattern value="[a-zA-Z]" />
+    </restriction>
+  </simpleType>
+  <complexType name="BrowseCitationFormatsResponse">
+    <sequence>
+      <element minOccurs="0" name="partitionList" type="ldccommon:CfaPartitionDetailsList">
+        <annotation>
+          <documentation>
+				Represents the information regarding the partitionkey,firstcfasourcename and lastcfasourcename			
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="cfaSourceList" type="ldccommon:CfaSourceDetailsList">
+        <annotation>
+          <documentation>
+				Represents the information regarding the source key, source name and reporter format					
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

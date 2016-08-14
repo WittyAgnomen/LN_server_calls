@@ -1,0 +1,9 @@
+C:\Users\Ryan\Desktop\LexisNexisProgram\WSKCons\bin\Debug\WSKSampleCons.exe.config
+C:\Users\Ryan\Desktop\LexisNexisProgram\WSKCons\bin\Debug\WSKSampleCons.exe
+C:\Users\Ryan\Desktop\LexisNexisProgram\WSKCons\bin\Debug\WSKSampleCons.pdb
+C:\Users\Ryan\Desktop\LexisNexisProgram\WSKCons\obj\Debug\WSKSampleCons.exe
+C:\Users\Ryan\Desktop\LexisNexisProgram\WSKCons\obj\Debug\WSKSampleCons.pdb
+C:\Users\Ryan\Desktop\LexisNexisProgram\WSKCons\obj\Debug\WSKSampleCons.csprojResolveAssemblyReference.cache
+C:\Users\Ryan\Desktop\LexisNexisProgram\bin\Debug\WSKSampleCons.exe.config
+C:\Users\Ryan\Desktop\LexisNexisProgram\obj\Debug\WSKSampleCons.exe
+C:\Users\Ryan\Desktop\LexisNexisProgram\obj\Debug\WSKSampleCons.pdb

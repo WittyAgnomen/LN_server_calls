@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://searchsourcedirectory.sourcedirectory.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" xmlns:sourcecommon="http://common.sourcedirectory.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://searchsourcedirectory.sourcedirectory.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="SourceDirectoryCommon.xsd" namespace="http://common.sourcedirectory.services.v1.wsapi.lexisnexis.com" />
+  <element name="SearchSourceDirectory" type="tns:SearchSourceDirectory">
+    <annotation>
+      <documentation>
+            Allows a client to search the source directory using the 
+            publication name of a source. A client may search from the
+            top of the source directory, or within a particular folder
+            and its associated sub-folders.
+         </documentation>
+    </annotation>
+  </element>
+  <element name="SearchSourceDirectoryResponse" type="tns:SearchSourceDirectoryResponse">
+    <annotation>
+      <documentation>
+            Includes a list of sources that match the search criteria. 
+            Metadata such as the source name and source identifier
+            are part of this list.
+         </documentation>
+    </annotation>
+  </element>
+  <complexType name="SearchSourceDirectory">
+    <complexContent mixed="false">
+      <extension base="common:BaseRequest">
+        <sequence>
+          <element name="binarySecurityToken" type="security:BinarySecurityToken">
+            <annotation>
+              <documentation>
+                <example xmlns="http://www.w3.org/2001/XMLSchema">f4348ad8876542bc93748c89fb98a7e</example>
+                  Security token that must be provided on all non-authentication
+                  requests.
+               </documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="folderId" type="integer">
+            <annotation>
+              <documentation>
+                  An identifier that is associated with a particular folder in 
+                  the source directory. In order to search from the top of the 
+                  directory, the folderId must be excluded.
+               </documentation>
+            </annotation>
+          </element>
+          <element name="partialSourceName" type="string">
+            <annotation>
+              <documentation>
+                <example xmlns="http://www.w3.org/2001/XMLSchema">The New York Times</example>
+                  Either the actual name of the publication or the name 
+                  given to a group of publications.
+               </documentation>
+            </annotation>
+          </element>
+          <element name="includeCombinability" type="boolean">
+            <annotation>
+              <documentation>
+             A flag indicates wheather the combinability infotmaion 
+             should be returned, default to false.
+          </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SearchSourceDirectoryResponse">
+    <sequence>
+      <element name="sourceList" type="sourcecommon:SourceList">
+        <annotation>
+          <documentation>
+                  The list of sources that satisfy the search request.
+               </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

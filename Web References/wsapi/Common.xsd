@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://common.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <simpleType name="ProjectId">
+    <restriction base="string">
+      <maxLength value="32" />
+    </restriction>
+  </simpleType>
+  <complexType name="SourceIdList">
+    <sequence>
+      <element maxOccurs="unbounded" ref="tns:sourceId">
+        <annotation>
+          <documentation>Unique identifier for a standard LexisNexis source.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <element name="sourceId" type="integer">
+    <annotation>
+      <documentation>Unique identifier for a standard LexisNexis source.</documentation>
+    </annotation>
+  </element>
+  <simpleType name="Locale">
+    <restriction base="language">
+      <enumeration value="en-US" />
+      <enumeration value="en-GB" />
+      <enumeration value="fr" />
+      <enumeration value="de" />
+      <enumeration value="en-AU" />
+      <enumeration value="en-NZ" />
+      <enumeration value="en-CA" />
+      <enumeration value="fr-CA" />
+    </restriction>
+  </simpleType>
+  <complexType name="BaseRequest">
+    <sequence>
+      <element minOccurs="0" default="en-US" name="locale" type="tns:Locale">
+        <annotation>
+          <documentation>
+					  Optional locale indicating language of request.  Used when it is 
+                      necessary to distinguish language of certain elements in the request
+                      parameters (search terms, source selection, etc.)
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

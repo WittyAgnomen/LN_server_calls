@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://common.sourcedirectory.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://common.sourcedirectory.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <complexType name="Source">
+    <sequence>
+      <element name="name" type="string">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">News Group File, Most Recent 90 Days</example>
+                  Either the actual name of the publication or the name 
+                  given to a group of publications.                  
+               </documentation>
+        </annotation>
+      </element>
+      <element ref="common:sourceId">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">7944</example>
+                  An identifier used to represent a specific source in
+                  the source directory.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="description" type="string">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">News</example>
+                  A short description of the source.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="type" type="tns:SourceType">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">SecuredSource</example>
+					Type of sources returned.
+				</documentation>
+        </annotation>
+      </element>
+      <element name="premiumSource" type="boolean">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">true</example>
+                  This flag warns users that the source that was requested
+				  is not found in their normal subscription, but may be 
+				  used to run a search on a pay-per-transaction basis.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="combinabilityIdList" type="tns:CombinabilityIdList">
+        <annotation>
+          <documentation>
+					 The list of combinability ids for the source.
+				</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SourceList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="source" type="tns:Source">
+        <annotation>
+          <documentation>
+                  Detailed information about a single source.
+               </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="CombinabilityIdList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="combinabilityId" type="integer">
+        <annotation>
+          <documentation>
+                  The combinability identifier for a single source.  Only sources
+				  with common combinabilityId(s) can be combined together for searching.
+               </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <simpleType name="SourceType">
+    <restriction base="string">
+      <enumeration value="Standard" />
+      <enumeration value="SecuredSource" />
+      <enumeration value="TableOfContents" />
+    </restriction>
+  </simpleType>
+</schema>

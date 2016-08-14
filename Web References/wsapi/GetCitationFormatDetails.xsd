@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://getcitationformatdetails.ldc.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:ldccommon="http://ldccommon.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://getcitationformatdetails.ldc.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="LDCCommon.xsd" namespace="http://ldccommon.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="GetCitationFormatDetails" type="tns:GetCitationFormatDetails">
+    <annotation>
+      <documentation>
+      	Represents a search for getting the citation format details using the cfa source keys
+      </documentation>
+    </annotation>
+  </element>
+  <element name="GetCitationFormatDetailsResponse" type="tns:GetCitationFormatDetailsResponse">
+    <annotation>
+      <documentation>
+      	The response from a GetCitationFormatDetails is a set of search results,   
+        containing information regarding the source key, source Name and the reporter format, citation prefix, 
+        citation suffix, sampleinfoText.
+      </documentation>
+    </annotation>
+  </element>
+  <complexType name="GetCitationFormatDetails">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">f4348ad8876542bc93748c89fb98a7e</example>
+            Security token that must be provided on all non-authentication
+            requests.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="cfaSourceKeyList" type="ldccommon:CfaSourceKeyList">
+        <annotation>
+          <documentation>
+		      	List of CFA source key 
+		      </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="GetCitationFormatDetailsResponse">
+    <sequence>
+      <element name="citationInformation" type="ldccommon:CfaSourceFullDetailsList">
+        <annotation>
+          <documentation>
+	            The response from a GetCitationFormatDetails is a set of search results,   
+		        containing information regarding the source key, source Name and the reporter format, citation prefix, 
+        		citation suffix, sampleinfoText.
+		      </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://getdocumentinsourcecontext.retrieve.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:scresult="http://sourcecontextresult.common.services.v1.wsapi.lexisnexis.com" xmlns:result="http://result.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://getdocumentinsourcecontext.retrieve.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Result.xsd" namespace="http://result.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="SourceContextResult.xsd" namespace="http://sourcecontextresult.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="SearchCommon.xsd" namespace="http://common.search.services.v1.wsapi.lexisnexis.com" />
+  <element name="GetDocumentInSourceContext" type="tns:GetDocumentInSourceContext">
+    <annotation>
+      <documentation>Allows a client to retrieve a document with source context
+	  information such as sourceContextId, and relevant previous/next document information.</documentation>
+    </annotation>
+  </element>
+  <element name="GetDocumentInSourceContextResponse" type="scresult:SourceContextRetrievalResponse">
+    <annotation>
+      <documentation>Returns the document requested by the client.</documentation>
+    </annotation>
+  </element>
+  <complexType name="GetDocumentInSourceContext">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>Security token that must be provided on all authenticated requests.</documentation>
+        </annotation>
+      </element>
+      <element name="documentId" type="string">
+        <annotation>
+          <documentation>Represents the "point of reference" document from
+          which the previous or next document in the source will be taken.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="documentFormatOptions" type="result:DocumentFormatOptions">
+        <annotation>
+          <documentation>Optional element that defines the particular document 
+        view and markup in which documents are to be retrieved.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

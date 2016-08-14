@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://findglobalsourcesbykeyword.globalsourcedirectory.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" xmlns:sourcecommon="http://common.source.services.v1.wsapi.lexisnexis.com" xmlns:gsdcommon="http://common.globalsourcedirectory.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://findglobalsourcesbykeyword.globalsourcedirectory.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="GlobalSourceDirectoryCommon.xsd" namespace="http://common.globalsourcedirectory.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="SourceCommon.xsd" namespace="http://common.source.services.v1.wsapi.lexisnexis.com" />
+  <element name="FindGlobalSourcesByKeyword" type="tns:FindGlobalSourcesByKeyword">
+    <annotation>
+      <documentation>
+				Allows a client to search the global source directory by keyword.  Filters may
+				be optionally applied to limit the search to particular nodes in the various
+				source taxonomies.
+			</documentation>
+    </annotation>
+  </element>
+  <element name="FindGlobalSourcesByKeywordResponse" type="tns:FindGlobalSourcesByKeywordResponse">
+    <annotation>
+      <documentation>
+				The response message containing the list of sources that matched the request
+				parameters.
+			</documentation>
+    </annotation>
+  </element>
+  <complexType name="FindGlobalSourcesByKeyword">
+    <sequence>
+      <element name="locale" type="common:Locale">
+        <annotation>
+          <documentation>
+						Optional locale indicating language of request.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">f4348ad8876542bc93748c89fb98a7e</example>
+						Security token that must be provided on all non-authentication
+						requests.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="includeTypeOfSource" type="boolean">
+        <annotation>
+          <documentation>
+					   If true, it returns the "Type of Source" and AggregateSubSourceList in Response Source objects.
+					   Else, it does not return the "Type of Source" in Response.
+                    </documentation>
+        </annotation>
+      </element>
+      <element name="query" type="string">
+        <annotation>
+          <documentation>
+						The keyword(s) for which the system will search.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="intersectionFilterList" type="gsdcommon:FilterList">
+        <annotation>
+          <documentation>
+						Sets the list of filters to be applied to the incoming request.  The
+						filters will be applied using a logical AND combination, meaning that only
+						results that match ALL the filters (the intersection of the filters) will
+						be returned.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="useCSP" type="boolean">
+        <annotation>
+          <documentation>Sets the CSP value. false = R4.1 behavior (DFS combinability rules) true = R5 behavior (Combined Search combinability rules)</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="FindGlobalSourcesByKeywordResponse">
+    <sequence>
+      <element name="sourceList" type="sourcecommon:SourceList">
+        <annotation>
+          <documentation>
+						The list of sources that match the request parameters.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

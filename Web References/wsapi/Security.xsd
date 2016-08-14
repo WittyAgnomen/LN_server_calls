@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://security.common.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <simpleType name="BinarySecurityToken">
+    <restriction base="string" />
+  </simpleType>
+  <complexType name="UISDetails">
+    <sequence>
+      <element minOccurs="0" name="userId" type="string">
+        <annotation>
+          <documentation>
+						User id details related to UIS Toekn.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="UISToken" type="string">
+        <annotation>
+          <documentation>New UIS Token</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="UserInformation">
+    <sequence>
+      <element name="locale" type="common:Locale">
+        <annotation>
+          <documentation>
+						Default language that will be used on subsequent
+						requests.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

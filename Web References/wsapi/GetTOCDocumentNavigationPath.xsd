@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://gettocdocumentnavigationpath.tableofcontents.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" xmlns:toccommon="http://common.tableofcontents.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://gettocdocumentnavigationpath.tableofcontents.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="TOCCommon.xsd" namespace="http://common.tableofcontents.services.v1.wsapi.lexisnexis.com" />
+  <element name="GetTOCDocumentNavigationPath" type="tns:GetTOCDocumentNavigationPath">
+    <annotation>
+      <documentation>Request for the client application to retrieve the table of 
+      contents navigation path to the specified document.  The navigation path can
+      be either the full "publication tree" expanded to the related TOC node, or
+      simply the node "ancestry".</documentation>
+    </annotation>
+  </element>
+  <element name="GetTOCDocumentNavigationPathResponse" type="toccommon:TOCResponse">
+    <annotation>
+      <documentation>TOC navigation path response sent to the client application.
+      </documentation>
+    </annotation>
+  </element>
+  <complexType name="GetTOCDocumentNavigationPath">
+    <sequence>
+      <element minOccurs="0" name="locale" type="common:Locale">
+        <annotation>
+          <documentation>Indicates language of request.</documentation>
+        </annotation>
+      </element>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>f4348ad8876542bc93748c89fb98a7e Security token that must
+          be provided on all non-authentication requests.</documentation>
+        </annotation>
+      </element>
+      <element name="documentId" type="string">
+        <annotation>
+          <documentation>An identifier associated with a single LexisNexis document.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="pathType" type="tns:PathType">
+        <annotation>
+          <documentation>Option to indicate whether to retrieve only the TOC "ancestry"
+          or all the top level TOC nodes with the TOC expanded to show the ancestry.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <simpleType name="PathType">
+    <restriction base="string">
+      <enumeration value="AncestryOnly" />
+      <enumeration value="TopLevelPlusAncestry" />
+    </restriction>
+  </simpleType>
+</schema>

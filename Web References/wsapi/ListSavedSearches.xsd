@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://listsavedsearches.savedsearch.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:savedsearch="http://common.savedsearch.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://listsavedsearches.savedsearch.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="SavedSearchCommon.xsd" namespace="http://common.savedsearch.services.v1.wsapi.lexisnexis.com" />
+  <element name="ListSavedSearches" type="tns:ListSavedSearches">
+    <annotation>
+      <documentation>
+				Allows a client to list the saved searches currently stored via WSAPI.
+			</documentation>
+    </annotation>
+  </element>
+  <element name="ListSavedSearchesResponse" type="tns:ListSavedSearchesResponse">
+    <annotation>
+      <documentation>
+				Contains information about the client's saved searches.
+			</documentation>
+    </annotation>
+  </element>
+  <complexType name="ListSavedSearches">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>Security token that must be provided on all authenticated 
+                  requests.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="savedSearchRange" type="tns:SavedSearchRange">
+        <annotation>
+          <documentation>
+						The range of saved searches to retrieve.  Due to the possibility of a large number of
+						saved searches, they must be retrieved in chunks of up to 50.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="ListSavedSearchesResponse">
+    <sequence>
+      <element name="savedSearchesFound" type="integer">
+        <annotation>
+          <documentation>
+						The number of saved searches currently stored for this ID.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="savedSearchList" type="tns:SavedSearchList">
+        <annotation>
+          <documentation>
+						A structure that contains a list of containers, each describing a single saved search.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SavedSearchList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="savedSearch" type="tns:SavedSearch">
+        <annotation>
+          <documentation>
+						Encapsulates metadata about a single saved search.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SavedSearch">
+    <sequence>
+      <element name="savedSearchId" type="integer">
+        <annotation>
+          <documentation>
+						An identifier used to refer to this particular saved search.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="name" type="savedsearch:SavedSearchName">
+        <annotation>
+          <documentation>
+						The name associated with this saved search.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="saveDate" type="dateTime">
+        <annotation>
+          <documentation>
+						The timestamp that indicates when this saved search was saved.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="projectId" type="common:ProjectId">
+        <annotation>
+          <documentation>
+						The project ID associated with this saved search.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="lastExecutedDate" type="dateTime">
+        <annotation>
+          <documentation>
+						Timestamp indicating the last time that this saved search was executed.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SavedSearchRange">
+    <sequence>
+      <element name="begin" type="integer">
+        <annotation>
+          <documentation>
+						The begin index for this range.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="end" type="integer">
+        <annotation>
+          <documentation>
+						The end index for this range.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

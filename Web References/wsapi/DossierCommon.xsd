@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://common.dossier.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://common.dossier.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <complexType name="ComponentKeyList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="componentKey" type="string">
+        <annotation>
+          <documentation>A component key used to uniquely identify a component.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="ComponentDetailList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="componentDetail" type="tns:ComponentDetail">
+        <annotation>
+          <documentation>Details about the component.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="ComponentDetail">
+    <sequence>
+      <element name="componentKey" type="string">
+        <annotation>
+          <documentation>A component key used to uniquely identify a component.</documentation>
+        </annotation>
+      </element>
+      <element name="componentName" type="string">
+        <annotation>
+          <documentation>A component name used to describe a component.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <simpleType name="DossierType">
+    <restriction base="string">
+      <enumeration value="CompanyDossier" />
+      <enumeration value="IndustryDossier" />
+      <enumeration value="ExecutiveDossier" />
+    </restriction>
+  </simpleType>
+  <simpleType name="IndustryClassification">
+    <restriction base="string">
+      <enumeration value="SIC" />
+      <enumeration value="NAICS" />
+    </restriction>
+  </simpleType>
+</schema>

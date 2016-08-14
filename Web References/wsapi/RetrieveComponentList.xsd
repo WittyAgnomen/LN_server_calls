@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://retrievecomponentlist.dossier.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:commondossier="http://common.dossier.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://retrievecomponentlist.dossier.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="../Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="DossierCommon.xsd" namespace="http://common.dossier.services.v1.wsapi.lexisnexis.com" />
+  <element name="RetrieveComponentList" type="tns:RetrieveComponentList">
+    <annotation>
+      <documentation>Retrieves the available components.</documentation>
+    </annotation>
+  </element>
+  <element name="RetrieveComponentListResponse" type="tns:RetrieveComponentListResponse">
+    <annotation>
+      <documentation>Returns a list of available components.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RetrieveComponentList">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>Security token that must be provided on all authenticated requests.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" maxOccurs="1" name="dossierId" type="string">
+        <annotation>
+          <documentation>Unique identifier that refers to a company in Company Dossier.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" maxOccurs="1" name="dossierType" type="commondossier:DossierType">
+        <annotation>
+          <documentation>
+					The type of dossier that corresponds with the dossier id used in this call.
+					Either CompanyDossier or IndustryDossier.  CompanyDossier is assumed, and will
+					be used if no dossierType is supplied.
+				</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveComponentListResponse">
+    <sequence>
+      <element minOccurs="1" maxOccurs="1" name="componentDetailList" type="commondossier:ComponentDetailList">
+        <annotation>
+          <documentation>The list of component details.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

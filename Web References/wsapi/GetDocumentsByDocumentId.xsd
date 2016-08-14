@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://getdocumentsbydocumentid.retrieve.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:result="http://result.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://getdocumentsbydocumentid.retrieve.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Result.xsd" namespace="http://result.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="GetDocumentsByDocumentId" type="tns:GetDocumentsByDocumentId">
+    <annotation>
+      <documentation>
+				Allows a client to retrieve documents specified by a list of document IDs.
+			</documentation>
+    </annotation>
+  </element>
+  <element name="GetDocumentsByDocumentIdResponse" type="result:RetrievalResponse">
+    <annotation>
+      <documentation>
+				Returns the documents requested by the client.
+			</documentation>
+    </annotation>
+  </element>
+  <complexType name="GetDocumentsByDocumentId">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+						Security token that must be provided on all authenticated requests.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" maxOccurs="1" name="crosslinkFlag" type="string">
+        <annotation>
+          <documentation>
+				Created a new element for XML Crosslink functionality. 
+				To enable the cross linking functionality, the value to be passed is "Y" or "y"
+			</documentation>
+        </annotation>
+      </element>
+      <element name="documentIdList" type="tns:DocumentIdList" />
+      <element minOccurs="0" name="retrievalOptions" type="tns:RetrievalOptions" />
+    </sequence>
+  </complexType>
+  <complexType name="DocumentIdList">
+    <sequence>
+      <element minOccurs="1" maxOccurs="unbounded" name="documentId" type="string">
+        <annotation>
+          <documentation>
+						An identifier associated with a single LexisNexis document.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RetrievalOptions">
+    <sequence>
+      <element minOccurs="0" name="documentView" type="result:DocumentView">
+        <annotation>
+          <documentation>
+						Defines the particular view (full text, etc.) in which documents are to be retrieved.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="documentMarkup" type="result:DocumentMarkup">
+        <annotation>
+          <documentation>
+						Defines the particular markup in which documents are to be retrieved.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="includeExtendedOutput" type="boolean">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">true</example>
+          </documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="includeShepardsSignals" type="boolean">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">true</example>
+          </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

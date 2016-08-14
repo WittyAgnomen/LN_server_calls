@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://authenticatelocation.authentication.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://authenticatelocation.authentication.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="AuthenticateLocation" type="tns:AuthenticateLocation">
+    <annotation>
+      <documentation>
+        Location-based authentication using IP Address.
+        </documentation>
+    </annotation>
+  </element>
+  <element name="AuthenticateLocationResponse" type="tns:AuthenticateLocationResponse">
+    <annotation>
+      <documentation>
+        Location-based authentication response includes a security token string that must
+        be passed in as a parameter on all subsequent requests.  The token
+        is valid until the expiration time indicated in the response.
+        </documentation>
+    </annotation>
+  </element>
+  <complexType name="AuthenticateLocation">
+    <sequence>
+      <element minOccurs="0" name="namespace" type="string">
+        <annotation>
+          <documentation>
+                  The namespace of the web id.  A namespace is not required 
+				  for most markets and applications.
+                  </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="AuthenticateLocationResponse">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+                Security token to be used on all subsequent requests.  This token
+		        has a finite lifespan as indicated by the expiration time.
+                </documentation>
+        </annotation>
+      </element>
+      <element name="expiration" type="dateTime">
+        <annotation>
+          <documentation>
+                Expiration date and time for this security token.
+                </documentation>
+        </annotation>
+      </element>
+      <element name="userInformation" type="security:UserInformation">
+        <annotation>
+          <documentation>
+                Default language that will be used on subsequent requests.
+                </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

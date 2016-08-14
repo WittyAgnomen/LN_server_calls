@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://resolvedossierlinkid.dossier.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:result="http://result.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" xmlns:commondossier="http://common.dossier.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://resolvedossierlinkid.dossier.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="../Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="../Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="../Result.xsd" namespace="http://result.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="DossierCommon.xsd" namespace="http://common.dossier.services.v1.wsapi.lexisnexis.com" />
+  <element name="ResolveDossierLinkId" type="tns:ResolveDossierLinkId">
+    <annotation>
+      <documentation>ResolveDossierLinkId request element.</documentation>
+    </annotation>
+  </element>
+  <element name="ResolveDossierLinkIdResponse" type="tns:ResolveDossierLinkIdResponse">
+    <annotation>
+      <documentation>ResolveDossierLinkId response element.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ResolveDossierLinkId">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>Security token that must be provided on all non-authentication requests.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="dossierLinkId" type="string">
+        <annotation>
+          <documentation>An identifier used to represent a (list of) dossier document(s).</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="documentFormatOptions" type="result:DocumentFormatOptions">
+        <annotation>
+          <documentation>Options for how the document(s) will be retrieved.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" maxOccurs="1" name="dossierType" type="commondossier:DossierType">
+        <annotation>
+          <documentation>
+					The type of dossier that corresponds with the dossier id used in this call.
+					Either CompanyDossier or IndustryDossier.  CompanyDossier is assumed, and will
+					be used if no dossierType is supplied.
+				</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="ResolveDossierLinkIdResponse">
+    <complexContent mixed="false">
+      <extension base="result:SearchResponse" />
+    </complexContent>
+  </complexType>
+</schema>

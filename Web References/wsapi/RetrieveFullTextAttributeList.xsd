@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://retrievefulltextattributelist.dossier.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://retrievefulltextattributelist.dossier.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="../Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="RetrieveFullTextAttributeList" type="tns:RetrieveFullTextAttributeList">
+    <annotation>
+      <documentation>RetrieveFullTextAttributeList request element.</documentation>
+    </annotation>
+  </element>
+  <element name="RetrieveFullTextAttributeListResponse" type="tns:RetrieveFullTextAttributeListResponse">
+    <annotation>
+      <documentation>RetrieveFullTextAttributeList response element.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RetrieveFullTextAttributeList">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>Security token that must be provided on all non-authentication requests.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveFullTextAttributeListResponse">
+    <sequence>
+      <element name="fullTextAttributeList" type="tns:FullTextAttributeList">
+        <annotation>
+          <documentation />
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="FullTextAttributeList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="attribute" type="tns:FullTextAttribute">
+        <annotation>
+          <documentation>A full text attribute.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="FullTextAttribute">
+    <sequence>
+      <element name="key" type="string">
+        <annotation>
+          <documentation>The attribute key used in searching Company Dossier. This
+						key uniquely defines the attribute but should not be displayed
+						to users.</documentation>
+        </annotation>
+      </element>
+      <element name="name" type="string">
+        <annotation>
+          <documentation>The attribute name that should be displayed to the user when
+						identifying the attribute.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

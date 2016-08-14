@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://comparecompanies.dossier.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://comparecompanies.dossier.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="../Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="CompareCompanies" type="tns:CompareCompanies">
+    <annotation>
+      <documentation>Compare two to five companies.</documentation>
+    </annotation>
+  </element>
+  <element name="CompareCompaniesResponse" type="tns:CompareCompaniesResponse">
+    <annotation>
+      <documentation>Returns a comparison report of companies.</documentation>
+    </annotation>
+  </element>
+  <complexType name="CompareCompanies">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>Security token that must be provided on all authenticated requests.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="1" maxOccurs="1" name="dossierIdList" type="tns:DossierIdList">
+        <annotation>
+          <documentation>List of company identifiers.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="CompareCompaniesResponse">
+    <sequence>
+      <element minOccurs="1" maxOccurs="1" name="report" type="base64Binary">
+        <annotation>
+          <documentation>An XML company comparison report, encoded in base64.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="DossierIdList">
+    <sequence>
+      <element minOccurs="2" maxOccurs="5" name="dossierId" type="string">
+        <annotation>
+          <documentation>Unique identifier that refers to a company in Company Dossier.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

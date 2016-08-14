@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://browseindustryhierarchy.dossier.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" xmlns:dossiercommon="http://common.dossier.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://browseindustryhierarchy.dossier.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="../Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="../Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="DossierCommon.xsd" namespace="http://common.dossier.services.v1.wsapi.lexisnexis.com" />
+  <element name="BrowseIndustryHierarchy" type="tns:BrowseIndustryHierarchy">
+    <annotation>
+      <documentation>BrowseIndustryHierarchy request element.</documentation>
+    </annotation>
+  </element>
+  <element name="BrowseIndustryHierarchyResponse" type="tns:BrowseIndustryHierarchyResponse">
+    <annotation>
+      <documentation>BrowseIndustryHierarchy response element.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BrowseIndustryHierarchy">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>Security token that must be provided on all non-authentication requests.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="industryNodeId" type="string">
+        <annotation>
+          <documentation>The industry to browse the industry hierarchy of. Default (not supplied) is top level</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="industryClassification" type="dossiercommon:IndustryClassification">
+        <annotation>
+          <documentation>Type of classification you want to browse, SIC or NAICS.  SIC is used by default.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="BrowseIndustryHierarchyResponse">
+    <sequence>
+      <element name="industryList" type="tns:IndustryList">
+        <annotation>
+          <documentation>The industry entity associated with the industryId in the request.  This entity could contain other industry entities.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="IndustryList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="industry" type="tns:Industry">
+        <annotation>
+          <documentation>An Industry Entity</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="Industry">
+    <sequence>
+      <element minOccurs="0" name="industryNodeId" type="string">
+        <annotation>
+          <documentation>The id used to browse deeper into the industry hierarchy.  Mutually exclusive of SIC.</documentation>
+        </annotation>
+      </element>
+      <element name="description" type="string">
+        <annotation>
+          <documentation>A description of the industry.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="sic" type="string">
+        <annotation>
+          <documentation>The SIC code for the industry.  Mutually exclusive of industryNodeId.
+					Does not appear if IndustryClassification in the request was set to NAICS.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="naics" type="string">
+        <annotation>
+          <documentation>The NAICS code for the industry.  Mutually exclusive of industryNodeId.  
+					Only returned if IndustryClassification in the request was set to NAICS.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="dossierId" type="string">
+        <annotation>
+          <documentation>The dossier Id that can be used to retrieve reports or report metadata.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

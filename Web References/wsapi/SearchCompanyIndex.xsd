@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://searchcompanyindex.index.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" xmlns:indexcommon="http://indexcommon.index.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://searchcompanyindex.index.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="IndexCommon.xsd" namespace="http://indexcommon.index.services.v1.wsapi.lexisnexis.com" />
+  <element name="SearchCompanyIndex" type="tns:SearchCompanyIndex">
+    <annotation>
+      <documentation>
+				This will take search string as input to return companyIDs 
+				and an indicator that indicates whether there is a hierarchy 
+				available for it or not. 
+			</documentation>
+    </annotation>
+  </element>
+  <element name="SearchCompanyIndexResponse" type="tns:SearchCompanyIndexResponse">
+    <annotation>
+      <documentation>
+				This returns a list of CompanyIndexTerms that matched 
+				with the search criteria, and the size of the result set.
+			</documentation>
+    </annotation>
+  </element>
+  <complexType name="SearchCompanyIndex">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+						Security token that must be provided on all
+						non-authentication requests. Example:
+						f4348ad8876542bc93748c89fb98a7e
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" default="en-US" name="locale" type="common:Locale">
+        <annotation>
+          <documentation>
+						The adapation to use.The format of the locale string must be like: en_US.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" default="3000" name="maxResults" type="integer">
+        <annotation>
+          <documentation>
+						Max allowed results. If more then this number of results
+						are found an Exception will be thrown. If maxResults is 
+						set to zero then the value will default to DEFAULT_MAX_RESULTS.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" default="100" name="numSearchResults" type="integer">
+        <annotation>
+          <documentation>
+						The size of the result set chunk.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" default="1" name="searchResultStart" type="integer">
+        <annotation>
+          <documentation>
+						The start of the result set chunk.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="1" maxOccurs="1" name="searchString" type="string">
+        <annotation>
+          <documentation>
+						The search pattern for finding terms.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" default="CONTAINS" name="searchType" type="tns:SearchType">
+        <annotation>
+          <documentation>
+						The search Type that user wants.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" default="COMPANY_NAME" name="sortBy" type="tns:SortByType">
+        <annotation>
+          <documentation>
+						Sort by Company Name or Ultimate Parent.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" default="ASCENDING" name="sortOrder" type="tns:SortOrderType">
+        <annotation>
+          <documentation>
+						Order by Ascending or Descending.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <simpleType name="SearchType">
+    <restriction base="string">
+      <enumeration value="CONTAINS" />
+      <enumeration value="STARTS_WITH" />
+      <enumeration value="EXACT_MATCH" />
+    </restriction>
+  </simpleType>
+  <simpleType name="SortByType">
+    <restriction base="string">
+      <enumeration value="COMPANY_NAME" />
+      <enumeration value="ULTIMATE_PARENT" />
+    </restriction>
+  </simpleType>
+  <simpleType name="SortOrderType">
+    <restriction base="string">
+      <enumeration value="ASCENDING" />
+      <enumeration value="DESCENDING" />
+    </restriction>
+  </simpleType>
+  <complexType name="SearchCompanyIndexResponse">
+    <sequence>
+      <element minOccurs="0" name="resultCount" type="integer">
+        <annotation>
+          <documentation>Size of the result set for the given search criteria.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="1" name="searchResults" type="indexcommon:CompanyIndexTermList">
+        <annotation>
+          <documentation>
+						ArrayList of type CompanyIndexTerm containing 
+						the CompanyIndexTerms found. 
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

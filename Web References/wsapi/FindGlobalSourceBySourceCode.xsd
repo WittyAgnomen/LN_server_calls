@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://findglobalsourcebysourcecode.globalsourcedirectory.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" xmlns:sourcecommon="http://common.source.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://findglobalsourcebysourcecode.globalsourcedirectory.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="SourceCommon.xsd" namespace="http://common.source.services.v1.wsapi.lexisnexis.com" />
+  <element name="FindGlobalSourceBySourceCode" type="tns:FindGlobalSourceBySourceCode">
+    <annotation>
+      <documentation>
+            Allows a client to search the source directory using the 
+            source code of a source.  Source codes are in the format of library;file.
+         </documentation>
+    </annotation>
+  </element>
+  <element name="FindGlobalSourceBySourceCodeResponse" type="tns:FindGlobalSourceBySourceCodeResponse">
+    <annotation>
+      <documentation>
+            Includes a list of sources that match the search criteria. 
+            Metadata such as the source name and source identifier
+            are part of this list.
+         </documentation>
+    </annotation>
+  </element>
+  <complexType name="FindGlobalSourceBySourceCode">
+    <sequence>
+      <element name="locale" type="common:Locale">
+        <annotation>
+          <documentation>
+					Optional locale indicating language of request.
+				</documentation>
+        </annotation>
+      </element>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">f4348ad8876542bc93748c89fb98a7e</example>
+                  Security token that must be provided on all non-authentication
+                  requests.
+               </documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="includeTypeOfSource" type="boolean">
+        <annotation>
+          <documentation>
+					   If true, it returns the "Type of Source" in Response Source objects.
+					   Else, it does not return the "Type of Source" in Response.
+                    </documentation>
+        </annotation>
+      </element>
+      <element name="library" type="string">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">news</example>				              
+                  The library of the source.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="file" type="string">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">90days</example>
+                  The filename of the source.
+               </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="FindGlobalSourceBySourceCodeResponse">
+    <sequence>
+      <element name="source" type="sourcecommon:Source">
+        <annotation>
+          <documentation>
+                  The list of sources that satisfy the search request.
+               </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

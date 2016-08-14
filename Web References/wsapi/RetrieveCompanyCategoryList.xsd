@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://retrievecompanycategorylist.dossier.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://retrievecompanycategorylist.dossier.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="../Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="RetrieveCompanyCategoryList" type="tns:RetrieveCompanyCategoryList">
+    <annotation>
+      <documentation>RetrieveCompanyCategoryList request element.</documentation>
+    </annotation>
+  </element>
+  <element name="RetrieveCompanyCategoryListResponse" type="tns:RetrieveCompanyCategoryListResponse">
+    <annotation>
+      <documentation>RetrieveCompanyCategoryList response element.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RetrieveCompanyCategoryList">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>Security token that must be provided on all non-authentication requests.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveCompanyCategoryListResponse">
+    <sequence>
+      <element name="companyCategoryList" type="tns:CompanyCategoryList">
+        <annotation>
+          <documentation>A list of valid company categories. In general, the order
+						that this information is returned is the order that you
+						will want to display it to a user. 
+						
+						Note, this information is updated infrequently, and
+						thus should not be retrieved more than once per day.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="CompanyCategoryList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="companyCategory" type="tns:CompanyCategory">
+        <annotation>
+          <documentation>A company category.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="CompanyCategory">
+    <sequence>
+      <element name="key" type="string">
+        <annotation>
+          <documentation>The category key used in searching Company Dossier. This
+						key uniquely defines the category, but should not be displayed
+						to users.</documentation>
+        </annotation>
+      </element>
+      <element name="name" type="string">
+        <annotation>
+          <documentation>The category name that should be displayed to the user when
+						identifying the category.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

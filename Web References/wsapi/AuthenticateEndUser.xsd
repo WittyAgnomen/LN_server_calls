@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://authenticateenduser.authentication.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://authenticateenduser.authentication.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="AuthenticateEndUser" type="tns:AuthenticateEndUser">
+    <annotation>
+      <documentation>
+			AuthenticateEndUser allows an application to create a new 
+			binarySecurityToken can be used for subsequent requests that 
+			will be associated with the end user's product entitlements, 
+			billing information, etc.
+         </documentation>
+    </annotation>
+  </element>
+  <element name="AuthenticateEndUserResponse" type="tns:AuthenticateEndUserResponse">
+    <annotation>
+      <documentation>
+            Authorization response includes a security token string that must
+            be passed in as a parameter on all subsequent requests.  The token
+            is valid until the expiration time indicated in the response.
+         </documentation>
+    </annotation>
+  </element>
+  <complexType name="AuthenticateEndUser">
+    <sequence>
+      <element name="wskCredentials" type="tns:WskCredentials">
+        <annotation>
+          <documentation>
+                  Used to impersonate a non-global user.  User-specific parameters that are used during authentication.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="endUserCredentials" type="tns:EndUserCredentials">
+        <annotation>
+          <documentation>
+                  Used to impersonate a non-global user.  User-specific parameters that are used during authentication.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="product" type="tns:Product">
+        <annotation>
+          <documentation>
+                  Use this to select the product you want to authenticate the
+				  end user against.
+               </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="WskCredentials">
+    <sequence>
+      <element name="authId" type="string">
+        <annotation>
+          <documentation>
+                The product Web ID to authenticate against.
+                </documentation>
+        </annotation>
+      </element>
+      <element name="password" type="string">
+        <annotation>
+          <documentation>
+                The password assigned to the authId.
+                </documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="namespace" type="string">
+        <annotation>
+          <documentation>
+                  The namespace of the web id.  A namespace is not required 
+				  for most markets and applications.
+                  </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="EndUserCredentials">
+    <sequence>
+      <element name="authId" type="string">
+        <annotation>
+          <documentation>
+                The product Web ID to authenticate against.
+                </documentation>
+        </annotation>
+      </element>
+      <element name="password" type="string">
+        <annotation>
+          <documentation>
+                The password assigned to the authId.
+                </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <simpleType name="Product">
+    <restriction base="string">
+      <enumeration value="LexisCom" />
+      <enumeration value="NexisCom" />
+      <enumeration value="Dossier" />
+      <enumeration value="WSKNorthAmerica" />
+      <enumeration value="WSKGlobal" />
+    </restriction>
+  </simpleType>
+  <complexType name="AuthenticateEndUserResponse">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">e7f6ab66b6cc6a8748389ab987c98f89e7f</example>
+                  Security token to be used on all subsequent requests.  This token
+		          has a finite lifespan as indicated by the expiration time.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="expiration" type="dateTime">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">2002-07-30T13:23:47.601Z</example>
+                  Expiration date and time for this security token.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="userInformation" type="security:UserInformation">
+        <annotation>
+          <documentation>
+            Default language that will be used on subsequent requests.
+            </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

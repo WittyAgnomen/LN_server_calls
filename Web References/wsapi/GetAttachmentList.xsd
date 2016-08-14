@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://getattachmentlist.retrieve.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:result="http://result.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://getattachmentlist.retrieve.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="SearchCommon.xsd" namespace="http://common.search.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Result.xsd" namespace="http://result.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="GetAttachmentList" type="tns:GetAttachmentList">
+    <annotation>
+      <documentation>
+				Allows a client to retrieve a list of attachments associated with an attachment id (image 2/3, 4/4, etc.).
+			</documentation>
+    </annotation>
+  </element>
+  <element name="GetAttachmentListResponse" type="tns:GetAttachmentListResponse">
+    <annotation>
+      <documentation>
+				Returns the accociated attachment descriptions/ids.
+			</documentation>
+    </annotation>
+  </element>
+  <complexType name="GetAttachmentList">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+						Security token that must be provided on all authenticated requests.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="attachmentId" type="string">
+        <annotation>
+          <documentation>
+						The attachment id found in a retrieved document.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="GetAttachmentListResponse">
+    <sequence>
+      <element minOccurs="0" name="attachmentList" type="tns:AttachmentList" />
+    </sequence>
+  </complexType>
+  <complexType name="AttachmentList">
+    <sequence>
+      <element maxOccurs="unbounded" name="attachment" type="tns:Attachment">
+        <annotation>
+          <documentation>
+						Encapsulates metadata about a single attachment.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="Attachment">
+    <sequence>
+      <element name="description" type="string">
+        <annotation>
+          <documentation>
+						A user-displayable attachment description.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="attachmentId" type="string">
+        <annotation>
+          <documentation>
+						Id of the attachment returned.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="dataFormat" type="string">
+        <annotation>
+          <documentation>
+						Data format of the attachment (e.g. gif, pdf, tiff, etc.)
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

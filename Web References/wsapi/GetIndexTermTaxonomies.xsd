@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://getindextermtaxonomies.index.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://getindextermtaxonomies.index.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="GetIndexTermTaxonomies" type="tns:GetIndexTermTaxonomies">
+    <annotation>
+      <documentation>Allows a user to retrieve indexing term taxonomies based
+			on the user's locale.</documentation>
+    </annotation>
+  </element>
+  <element name="GetIndexTermTaxonomiesResponse" type="tns:GetIndexTermTaxonomiesResponse">
+    <annotation>
+      <documentation>Returns a list of taxonomies.
+			</documentation>
+    </annotation>
+  </element>
+  <complexType name="GetIndexTermTaxonomies">
+    <complexContent mixed="false">
+      <extension base="common:BaseRequest">
+        <sequence>
+          <element name="binarySecurityToken" type="security:BinarySecurityToken">
+            <annotation>
+              <documentation>
+								Security token that must be provided on all non-authentication
+                  requests.  Example: f4348ad8876542bc93748c89fb98a7e</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GetIndexTermTaxonomiesResponse">
+    <sequence>
+      <element name="taxonomyList" type="tns:TaxonomyList">
+        <annotation>
+          <documentation>A list of taxonomies.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="TaxonomyList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="taxonomy" type="tns:Taxonomy">
+        <annotation>
+          <documentation>A taxonomy.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="Taxonomy">
+    <sequence>
+      <element name="taxonomyId" type="string">
+        <annotation>
+          <documentation>A taxonomyId.  Example: af987...90bc</documentation>
+        </annotation>
+      </element>
+      <element name="name" type="string">
+        <annotation>
+          <documentation>The taxonomy's name.  Example: Geographic</documentation>
+        </annotation>
+      </element>
+      <element name="browsable" type="boolean">
+        <annotation>
+          <documentation>A flag that indicates whether or not the taxonomy can be browsed with
+					the BrowseIndexTerms operation.  Some terms that are not broken down into browsable 
+					classifications, but are still obtainable through the SearchIndexTerms operation.  
+					Example: true</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

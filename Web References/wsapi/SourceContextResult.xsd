@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://sourcecontextresult.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://sourcecontextresult.common.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <complexType name="SourceContextRetrievalResponse">
+    <sequence>
+      <element minOccurs="1" name="sourceContextDocumentList" type="tns:SourceContextDocumentList">
+        <annotation>
+          <documentation>
+         			List of document containers (documents and metadata).
+         		</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SourceContextDocumentList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="sourceContextDocument" type="tns:SourceContextDocument">
+        <annotation>
+          <documentation>
+						A structure that encapsulates a document, and metadata about that document.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SourceContextDocument">
+    <sequence>
+      <element name="sourceContextId" type="string">
+        <annotation>
+          <documentation>
+						Represents the "point of reference" of this document in the source.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="nextIsRelevant" type="boolean">
+        <annotation>
+          <documentation>
+						An flag that indicates that calling GetAdjacentDocument (Next)
+						on this document id will return a relevant document.
+						(The next document is not the start of a new subject/document group.)
+					</documentation>
+        </annotation>
+      </element>
+      <element name="previousIsRelevant" type="boolean">
+        <annotation>
+          <documentation>
+						An flag that indicates that calling GetAdjacentDocument (Previous)
+						on this document id will return a relevant document.
+						(The previous document is not the end of the last subject/document group.)
+					</documentation>
+        </annotation>
+      </element>
+      <element name="document" type="base64Binary">
+        <annotation>
+          <documentation>
+						The text of a single LexisNexis document.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

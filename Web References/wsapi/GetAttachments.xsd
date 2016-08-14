@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://getattachments.retrieve.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:result="http://result.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://getattachments.retrieve.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="SearchCommon.xsd" namespace="http://common.search.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Result.xsd" namespace="http://result.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="GetAttachments" type="tns:GetAttachments">
+    <annotation>
+      <documentation>
+				Allows a client to retrieve attachments associated with documents such as images, PDFs, etc.
+			</documentation>
+    </annotation>
+  </element>
+  <element name="GetAttachmentsResponse" type="tns:GetAttachmentsResponse">
+    <annotation>
+      <documentation>
+				Returns the attachment(s) requested by the client.
+			</documentation>
+    </annotation>
+  </element>
+  <complexType name="GetAttachments">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+						Security token that must be provided on all authenticated requests.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="attachmentIdList" type="tns:AttachmentIdList" />
+    </sequence>
+  </complexType>
+  <complexType name="GetAttachmentsResponse">
+    <sequence>
+      <element minOccurs="0" name="attachmentContainerList" type="tns:AttachmentContainerList" />
+    </sequence>
+  </complexType>
+  <complexType name="AttachmentIdList">
+    <sequence>
+      <element maxOccurs="unbounded" name="attachmentId" type="string">
+        <annotation>
+          <documentation>
+						Encapsulates metadata about a single attachment.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="AttachmentContainerList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="attachmentContainer" type="tns:AttachmentContainer">
+        <annotation>
+          <documentation>
+						Encapsulates metadata for individual attachments.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="AttachmentContainer">
+    <sequence>
+      <element name="attachmentId" type="string">
+        <annotation>
+          <documentation>
+						Id of the attachment returned..
+					</documentation>
+        </annotation>
+      </element>
+      <element name="mimeType" type="string">
+        <annotation>
+          <documentation>
+						MIME type of the attachment (e.g. image/gif, application/pdf, etc.)
+						If a MIME type cannot be determined, then "unknown" will be returned.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="attachment" type="base64Binary">
+        <annotation>
+          <documentation>
+						Attachment returned and base 64 encoded.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

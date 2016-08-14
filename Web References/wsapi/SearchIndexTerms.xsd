@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://searchindexterms.index.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" xmlns:indexcommon="http://indexcommon.index.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://searchindexterms.index.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="IndexCommon.xsd" namespace="http://indexcommon.index.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="SearchIndexTerms" type="tns:SearchIndexTerms">
+    <annotation>
+      <documentation>Allows you to search terms that contain the query string specified.
+			Each term has an associated query string that can be used in a boolean search 
+			to help the user find more relevant information.</documentation>
+    </annotation>
+  </element>
+  <element name="SearchIndexTermsResponse" type="tns:SearchIndexTermsResponse">
+    <annotation>
+      <documentation>Includes information about terms found in the selected taxonomy.
+			</documentation>
+    </annotation>
+  </element>
+  <complexType name="SearchIndexTerms">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+						Security token that must be provided on all non-authentication
+          requests.  Example: f4348ad8876542bc93748c89fb98a7e</documentation>
+        </annotation>
+      </element>
+      <element name="indexTermTaxonomyIdList" type="tns:IndexTermTaxonomyIdList">
+        <annotation>
+          <documentation>A list of index term taxonomies to search on.
+					Each taxonomy must belong to the same Locale family. (You cannot
+					combine taxonomy ids found from BrowseIndexTermTaxonomyIds with
+					different Locale inputs.)</documentation>
+        </annotation>
+      </element>
+      <element name="indexQuery" type="string">
+        <annotation>
+          <documentation>A query to find indexing terms that contain the specified 
+					text in their names.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="IndexTermTaxonomyIdList">
+    <sequence>
+      <element maxOccurs="unbounded" name="indexTermTaxonomyId" type="string">
+        <annotation>
+          <documentation>An identifier that represents the taxonomy to be browsed.
+					termTaxonomyIds can be retrieved through GetIndexTermTaxonomies.
+					If no taxonomy is provided, all taxonomies will be searched</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SearchIndexTermsResponse">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="searchResultsGroup" type="tns:SearchResultsGroup">
+        <annotation>
+          <documentation>Zero or more groups of search results, broken down
+					by the taxonomy in which each term was found.  There will be at most only one
+					group if only one taxonomy was supplied, but more than one group could be
+					returned if no taxonomy was supplied in the request (in which case, all
+					available taxonomies were searched).  No groups will be returned if no terms
+					matching the query were found.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SearchResultsGroup">
+    <sequence>
+      <element name="taxonomyId" type="string">
+        <annotation>
+          <documentation>The taxonomy id.</documentation>
+        </annotation>
+      </element>
+      <element name="taxonomyName" type="string">
+        <annotation>
+          <documentation>The taxonomy name.</documentation>
+        </annotation>
+      </element>
+      <element name="indexTermList" type="indexcommon:IndexTermList">
+        <annotation>
+          <documentation>A list of index terms found in this taxonomy.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

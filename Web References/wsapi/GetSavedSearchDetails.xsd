@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://getsavedsearchdetails.savedsearch.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:savedsearch="http://common.savedsearch.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" xmlns:result="http://result.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://getsavedsearchdetails.savedsearch.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="SavedSearchCommon.xsd" namespace="http://common.savedsearch.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Result.xsd" namespace="http://result.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="GetSavedSearchDetails" type="tns:GetSavedSearchDetails">
+    <annotation>
+      <documentation>
+				Allows a client to retrieve the details of a specific saved search.
+			</documentation>
+    </annotation>
+  </element>
+  <element name="GetSavedSearchDetailsResponse" type="tns:GetSavedSearchDetailsResponse">
+    <annotation>
+      <documentation>
+				Contains information about the client's saved search.
+			</documentation>
+    </annotation>
+  </element>
+  <complexType name="GetSavedSearchDetails">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>Security token that must be provided on all authenticated 
+                  requests.</documentation>
+        </annotation>
+      </element>
+      <element name="savedSearchId" type="integer">
+        <annotation>
+          <documentation>
+						The profileKey for which details are to be retrieved.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="GetSavedSearchDetailsResponse">
+    <sequence>
+      <element name="savedSearchDetails" type="tns:SavedSearchDetails">
+        <annotation>
+          <documentation>
+						Encapsulates metadata about a single saved search.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SavedSearchDetails">
+    <sequence>
+      <element name="name" type="savedsearch:SavedSearchName">
+        <annotation>
+          <documentation>
+						The name associated with this saved search.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="description" type="string">
+        <annotation>
+          <documentation>
+						A description (optional) associated with this saved search.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="saveDate" type="dateTime">
+        <annotation>
+          <documentation>
+						The timestamp that indicates when this saved search was saved.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="locale" type="common:Locale">
+        <annotation>
+          <documentation>
+						The language in which this saved search was saved.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="projectId" type="common:ProjectId">
+        <annotation>
+          <documentation>
+						The project ID associated with this saved search.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="query" type="string">
+        <annotation>
+          <documentation>
+						The query that is run each time this saved search is executed.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="sourceIdList" type="common:SourceIdList">
+        <annotation>
+          <documentation>
+						The list of sources that this saved search is executed against.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="sortOrder" type="result:SortOrder">
+        <annotation>
+          <documentation>
+						The order in which results from this saved search are sorted.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="lastExecution" type="tns:LastExecution">
+        <annotation>
+          <documentation>
+						Metadata about the last time this saved search was executed.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="LastExecution">
+    <sequence>
+      <element minOccurs="0" name="searchId" type="string">
+        <annotation>
+          <documentation>
+						An opaque identifier used to refer to this execution's results.
+						If no results were found, no searchId is generated.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="date" type="dateTime">
+        <annotation>
+          <documentation>
+						Timestamp indicating the last time that this saved search was executed.
+					</documentation>
+        </annotation>
+      </element>
+      <element name="documentsFound" type="integer">
+        <annotation>
+          <documentation>
+						The number of documents found during this execution.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SavedSearchRange">
+    <sequence>
+      <element minOccurs="0" default="1" name="begin" type="integer">
+        <annotation>
+          <documentation>
+						The begin index for this range.
+					</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" default="25" name="end" type="integer">
+        <annotation>
+          <documentation>
+						The end index for this range.
+					</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

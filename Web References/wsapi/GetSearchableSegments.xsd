@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://getsearchablesegments.search.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" xmlns:sourcecommon="http://common.source.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://getsearchablesegments.search.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="GetSearchableSegments" type="tns:GetSearchableSegments">
+    <annotation>
+      <documentation>Allows a client to search for searchable segments.</documentation>
+    </annotation>
+  </element>
+  <element name="GetSearchableSegmentsResponse" type="tns:GetSearchableSegmentsResponse">
+    <annotation>
+      <documentation>Includes a list searchable segments.</documentation>
+    </annotation>
+  </element>
+  <complexType name="GetSearchableSegments">
+    <sequence>
+      <element minOccurs="0" name="locale" type="common:Locale">
+        <annotation>
+          <documentation>Optional locale indicating language of request.</documentation>
+        </annotation>
+      </element>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">f4348ad8876542bc93748c89fb98a7e</example>Security token that must be provided on all non-authentication
+                  requests.</documentation>
+        </annotation>
+      </element>
+      <element name="sourceList" type="tns:SourceIdList">
+        <annotation>
+          <documentation>The list of sources that satisfy the search request.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SourceIdList">
+    <sequence>
+      <element minOccurs="1" maxOccurs="unbounded" name="sourceId" type="integer">
+        <annotation>
+          <documentation>An identifier associated with a single LexisNexis document.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="GetSearchableSegmentsResponse">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="SegmentNameList" type="string">
+        <annotation>
+          <documentation>A structure that encapsulates a segment.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://getsourcesbyjurisdiction.ldc.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://getsourcesbyjurisdiction.ldc.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="GetSourcesByJurisdiction" type="tns:GetSourcesByJurisdiction">
+    <annotation>
+      <documentation>Request: Content type</documentation>
+    </annotation>
+  </element>
+  <element name="GetSourcesByJurisdictionResponse" type="tns:GetSourcesByJurisdictionResponse">
+    <annotation>
+      <documentation>Response: Returns a list of entitled sources based on the content type.
+			</documentation>
+    </annotation>
+  </element>
+  <complexType name="GetSourcesByJurisdiction">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+						Security token that must be provided on all non-authentication
+		                requests.  Example: f4348ad8876542bc93748c89fb98a7e
+		            </documentation>
+        </annotation>
+      </element>
+      <element minOccurs="1" name="contentType" type="string">
+        <annotation>
+          <documentation>
+						Content Type Example : Party Name Case Law</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="GetSourcesByJurisdictionResponse">
+    <sequence>
+      <element name="content" type="tns:Content">
+        <annotation>
+          <documentation>A Content Object</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="Content">
+    <sequence>
+      <element name="contentType" type="string">
+        <annotation>
+          <documentation>
+						Content Type Example : Party Name Case Law</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" maxOccurs="1" name="jurisdictionList" type="tns:JurisdictionList">
+        <annotation>
+          <documentation>List of jurisdictions</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="JurisdictionList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="jurisdiction" type="tns:Jurisdiction">
+        <annotation>
+          <documentation>Jurisdiction</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="Jurisdiction">
+    <sequence>
+      <element name="jurisdictionName" type="string">
+        <annotation>
+          <documentation>A jurisdiction name</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" maxOccurs="1" name="sourceList" type="tns:SourceList">
+        <annotation>
+          <documentation>List of sources</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SourceList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="source" type="tns:Source">
+        <annotation>
+          <documentation>A source</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="Source">
+    <sequence>
+      <element name="sourceId" type="integer">
+        <annotation>
+          <documentation>Unique identifier for a standard LexisNexis source. Example: 6496</documentation>
+        </annotation>
+      </element>
+      <element name="name" type="string">
+        <annotation>
+          <documentation>sourcename.  Example: All federal banks</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

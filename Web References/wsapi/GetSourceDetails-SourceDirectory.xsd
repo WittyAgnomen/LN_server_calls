@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://getsourcedetails.sourcedirectory.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.sourcedirectory.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://getsourcedetails.sourcedirectory.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="SourceDirectoryCommon.xsd" namespace="http://common.sourcedirectory.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <element name="GetSourceDetails" type="tns:GetSourceDetails">
+    <annotation>
+      <documentation>
+		 	To retrieve detailed information about a source, such as the 
+			description of the source content, permissible usage, etc.
+         </documentation>
+    </annotation>
+  </element>
+  <element name="GetSourceDetailsResponse" type="tns:GetSourceDetailsResponse">
+    <annotation>
+      <documentation>
+            The description of the content of a source.
+         </documentation>
+    </annotation>
+  </element>
+  <complexType name="GetSourceDetails">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">f4348ad8876542bc93748c89fb98a7e</example>
+                  Security token that must be provided on all non-authentication
+                  requests.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="sourceId" type="integer">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">7944</example>
+                  An identifier used to represent a specific source in
+                  the source directory.
+               </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="GetSourceDetailsResponse">
+    <sequence>
+      <element minOccurs="0" name="sourceGuideList" type="tns:SourceGuideList">
+        <annotation>
+          <documentation>
+                  A list of guiding description of the content of a specific source.
+               </documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="securedSource" type="tns:SecuredSource">
+        <annotation>
+          <documentation>
+                  Detailed information about a secured source.
+               </documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="informationalMessage" type="base64Binary">
+        <annotation>
+          <documentation>
+                  More information about a source, such as currentness.
+               </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SecuredSource">
+    <sequence>
+      <element name="securedSourceId" type="string">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">1234abcdefgxyz</example>
+                  An identifier used to represent a secured source.  This 
+				  id is required to run search for a secured source.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="expiration" type="dateTime">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">2002-07-30T13:23:47.601Z</example>
+                  Expiration date and time for this secured source ID.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="permissibleUseMessage" type="base64Binary">
+        <annotation>
+          <documentation>
+                  The detailed information about the secured source.
+               </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SourceGuideList">
+    <sequence>
+      <element maxOccurs="unbounded" name="sourceGuide" type="base64Binary">
+        <annotation>
+          <documentation>
+                  The description of the content of a specific source.
+               </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

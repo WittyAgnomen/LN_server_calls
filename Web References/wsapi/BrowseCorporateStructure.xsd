@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://browsecorporatestructure.index.services.v1.wsapi.lexisnexis.com" xmlns:security="http://security.common.services.v1.wsapi.lexisnexis.com" xmlns:common="http://common.services.v1.wsapi.lexisnexis.com" xmlns:indexcommon="http://indexcommon.index.services.v1.wsapi.lexisnexis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://browsecorporatestructure.index.services.v1.wsapi.lexisnexis.com" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="Common.xsd" namespace="http://common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="Security.xsd" namespace="http://security.common.services.v1.wsapi.lexisnexis.com" />
+  <import schemaLocation="IndexCommon.xsd" namespace="http://indexcommon.index.services.v1.wsapi.lexisnexis.com" />
+  <element name="BrowseCorporateStructure" type="tns:BrowseCorporateStructure">
+    <annotation>
+      <documentation>
+			    This call return CompanyIndexTerm that is the ultimate parent 
+			    of the provided company id. The ultimate parent company contains 
+			    the corporate structure for the provided company id.
+			</documentation>
+    </annotation>
+  </element>
+  <element name="BrowseCorporateStructureResponse" type="tns:BrowseCorporateStructureResponse">
+    <annotation>
+      <documentation>Returns Corporate Structure.
+			</documentation>
+    </annotation>
+  </element>
+  <complexType name="BrowseCorporateStructure">
+    <sequence>
+      <element name="binarySecurityToken" type="security:BinarySecurityToken">
+        <annotation>
+          <documentation>
+            <example xmlns="http://www.w3.org/2001/XMLSchema">f4348ad8876542bc93748c89fb98a7e</example>
+                  Security token that must be provided on all non-authentication
+                  requests.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="locale" type="common:Locale">
+        <annotation>
+          <documentation>
+					The adaptation to use.The format of the locale string must be like: en_US.
+				</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="1" maxOccurs="1" name="companyId" type="string">
+        <annotation>
+          <documentation>
+                  The company identifier.
+               </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="BrowseCorporateStructureResponse">
+    <sequence>
+      <element name="ultimateParentIncludingSubsidiaries" type="indexcommon:CompanyIndexTerm">
+        <annotation>
+          <documentation>
+                  Ultimate parent including subsidiaries.
+               </documentation>
+        </annotation>
+      </element>
+      <element name="ultimateParent" type="indexcommon:CompanyIndexTerm">
+        <annotation>
+          <documentation>
+                  Ultimate parent loaded with company Id's corporate structure.
+               </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+</schema>
